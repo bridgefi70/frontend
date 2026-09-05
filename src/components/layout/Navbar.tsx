@@ -84,7 +84,7 @@ const Navbar = () => {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="relative z-50 flex items-center justify-between gap-3 px-5 py-6 sm:px-8 md:px-12 lg:px-20 xl:px-30"
+      className="relative z-50 flex items-center justify-between gap-3 px-5 py-4 sm:px-8 md:px-12 lg:px-20 xl:px-30"
     >
       {/* =========================
           LOGO
@@ -102,7 +102,7 @@ const Navbar = () => {
           <motion.img
             src="/img/logo.png"
             alt="BridgeFi"
-            className="h-auto w-auto max-w-[150px] sm:max-w-[170px]"
+            className=" w-24 lg:w-42"
             whileHover={{
               scale: 1.04,
             }}
