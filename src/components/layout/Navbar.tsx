@@ -1,121 +1,419 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import Button from "@/components/ui/Button";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import Button from "../ui/Button";
 
-const NAV_LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Resources", href: "/resources" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+const navLinks = [
+  { label: "Home", to: "/" },
+  { label: "Events", to: "/events" },
+  { label: "About", to: "/about" },
+  { label: "Blog", to: "/blog" },
 ];
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const reduceMotion = useReducedMotion();
+const desktopContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const desktopItem = {
+  hidden: {
+    opacity: 0,
+    y: -12,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const mobileContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const mobileItem = {
+  hidden: {
+    opacity: 0,
+    x: 25,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    x: 20,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-colors duration-500 ease-precise ${scrolled ? "bg-navy-900/85 backdrop-blur-md border-b border-navy-700/60" : "bg-transparent"
-        }`}
+    <motion.nav
+      initial={{ opacity: 0, y: -25 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="relative z-50 flex items-center justify-between gap-3 px-5 py-6 sm:px-8 md:px-12 lg:px-20 xl:px-30"
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-perimeter py-5">
-        <Link to="/" className="flex items-center gap-2 group" aria-label="Home">
-          {/* <ShieldCheck className="h-5 w-5 text-signal-400 transition-transform duration-300 ease-precise group-hover:scale-110" strokeWidth={1.75} /> */}
-          <span className="font-display text-base font-semibold tracking-tight text-ink-light">      
-            <img src="/img/logo.png" alt="" className="w-8" />
-          </span>
+      {/* =========================
+          LOGO
+      ========================== */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{
+          duration: 0.6,
+          delay: 0.1,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        <Link to="/" onClick={closeMenu}>
+          <motion.img
+            src="/img/logo.png"
+            alt="BridgeFi"
+            className="h-auto w-auto max-w-[150px] sm:max-w-[170px]"
+            whileHover={{
+              scale: 1.04,
+            }}
+            whileTap={{
+              scale: 0.96,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 20,
+            }}
+          />
         </Link>
+      </motion.div>
 
-        <nav className="hidden md:flex items-center gap-8" aria-label="Primary">
-          {NAV_LINKS.map((link) => {
-            const isActive =
-              link.href === "/" ? location.pathname === "/" : location.pathname.startsWith(link.href);
-            return (
+      {/* =========================
+          DESKTOP NAVIGATION
+      ========================== */}
+      <motion.div
+        variants={desktopContainer}
+        initial="hidden"
+        animate="visible"
+        className="hidden items-center gap-7 md:flex"
+      >
+        {navLinks.map((link) => {
+          const isActive = location.pathname === link.to;
+
+          return (
+            <motion.div key={link.to} variants={desktopItem}>
               <Link
-                key={link.href}
-                to={link.href}
-                aria-current={isActive ? "page" : undefined}
-                className={`relative py-1 text-sm transition-all duration-300 ease-precise ${isActive
-                    ? "text-ink-light"
-                    : "text-mist-200 hover:text-bloom-400 hover:-translate-y-0.5"
-                  }`}
+                to={link.to}
+                className="group relative block py-2 text-sm font-medium text-white/90 transition-colors duration-300 hover:text-white"
               >
-                {link.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-active-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-signal-400 to-bloom-400"
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  />
-                )}
+                <span>{link.label}</span>
+
+                {/* Animated underline */}
+                <motion.span
+                  className="absolute -bottom-0.5 left-0 h-[2px] rounded-full bg-white"
+                  initial={false}
+                  animate={{
+                    width: isActive ? "100%" : "0%",
+                  }}
+                  whileHover={{
+                    width: "100%",
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                />
               </Link>
-            );
-          })}
-        </nav>
+            </motion.div>
+          );
+        })}
+      </motion.div>
 
-        <div className="hidden md:block">
-          <Button to="/consultation" size="sm">
-            Book a consultation
-          </Button>
-        </div>
-
-        <button
-          className="flex h-10 w-10 items-center justify-center text-ink-light md:hidden"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
+      {/* =========================
+          DESKTOP CTA BUTTONS
+      ========================== */}
+      <motion.div
+        variants={desktopContainer}
+        initial="hidden"
+        animate="visible"
+        className="hidden items-center gap-3 md:flex"
+      >
+        <motion.div
+          variants={desktopItem}
+          whileHover={{
+            y: -2,
+            scale: 1.02,
+          }}
+          whileTap={{
+            scale: 0.97,
+          }}
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
+          <Link to="/create-events">
+            <Button
+              text="Create Events"
+              width="145px"
+              height="44px"
+              radius="999px"
+              gradient
+            />
+          </Link>
+        </motion.div>
 
+        <motion.div
+          variants={desktopItem}
+          whileHover={{
+            y: -2,
+            scale: 1.02,
+          }}
+          whileTap={{
+            scale: 0.97,
+          }}
+        >
+          <Link to="/events">
+            <Button
+              text="Explore Events"
+              width="145px"
+              height="44px"
+              radius="999px"
+              outline
+            />
+          </Link>
+        </motion.div>
+      </motion.div>
+
+
+      {/* =========================
+          MOBILE MENU BUTTON
+      ========================== */}
+      <motion.button
+        type="button"
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((prev) => !prev)}
+        className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md md:hidden"
+        whileHover={{
+          scale: 1.05,
+          backgroundColor: "rgba(255,255,255,0.16)",
+        }}
+        whileTap={{
+          scale: 0.9,
+        }}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {menuOpen ? (
+            <motion.div
+              key="close"
+              initial={{
+                opacity: 0,
+                rotate: -90,
+                scale: 0.5,
+              }}
+              animate={{
+                opacity: 1,
+                rotate: 0,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                rotate: 90,
+                scale: 0.5,
+              }}
+              transition={{
+                duration: 0.25,
+                ease: "easeOut",
+              }}
+            >
+              <X size={21} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="menu"
+              initial={{
+                opacity: 0,
+                rotate: 90,
+                scale: 0.5,
+              }}
+              animate={{
+                opacity: 1,
+                rotate: 0,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                rotate: -90,
+                scale: 0.5,
+              }}
+              transition={{
+                duration: 0.25,
+                ease: "easeOut",
+              }}
+            >
+              <Menu size={21} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
+
+      {/* =========================
+          MOBILE MENU
+      ========================== */}
       <AnimatePresence>
-        {mobileOpen && (
-          <motion.nav
-            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, height: "auto" }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden overflow-hidden border-t border-navy-700/60 bg-navy-900"
-            aria-label="Mobile"
+        {menuOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              height: 0,
+              y: -10,
+            }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+              y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              height: 0,
+              y: -10,
+            }}
+            transition={{
+              duration: 0.35,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="absolute left-4 right-4 top-full overflow-hidden rounded-2xl border border-white/15 bg-black/40 p-4 shadow-2xl backdrop-blur-xl md:hidden"
           >
-            <div className="flex flex-col gap-1 px-perimeter py-4">
-              {NAV_LINKS.map((link) => {
-                const isActive =
-                  link.href === "/" ? location.pathname === "/" : location.pathname.startsWith(link.href);
-                return (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    aria-current={isActive ? "page" : undefined}
-                    className={`py-3 text-sm ${isActive ? "text-ink-light" : "text-mist-200 hover:text-bloom-500 hover:-translate-y-0.5"}`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-              <div className="pt-2">
-                <Button to="/consultation" size="sm" className="w-full justify-center">
-                  Book a consultation
-                </Button>
+            <motion.div
+              variants={mobileContainer}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              className="flex flex-col"
+            >
+              {/* Navigation links */}
+              <div className="flex flex-col">
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.to;
+
+                  return (
+                    <motion.div
+                      key={link.to}
+                      variants={mobileItem}
+                    >
+                      <Link
+                        to={link.to}
+                        onClick={closeMenu}
+                        className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium transition-colors ${isActive
+                          ? "bg-white/10 text-white"
+                          : "text-white/80 hover:bg-white/10 hover:text-white"
+                          }`}
+                      >
+                        <span>{link.label}</span>
+
+                        <motion.span
+                          animate={{
+                            x: isActive ? 0 : -5,
+                            opacity: isActive ? 1 : 0.4,
+                          }}
+                          transition={{
+                            duration: 0.2,
+                          }}
+                        >
+                          →
+                        </motion.span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
-            </div>
-          </motion.nav>
+
+              {/* Divider */}
+              <motion.div
+                variants={mobileItem}
+                className="my-3 h-px bg-white/10"
+              />
+
+              {/* Mobile CTAs */}
+              {/* Mobile CTAs */}
+              <motion.div
+                variants={mobileItem}
+                className="flex flex-col gap-3"
+              >
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <Link
+                    to="/create-events"
+                    onClick={closeMenu}
+                    className="block w-full"
+                  >
+                    <Button
+                      text="Create Events"
+                      width="100%"
+                      height="48px"
+                      radius="999px"
+                      gradient
+                      className="w-full"
+                    />
+                  </Link>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  <Link
+                    to="/events"
+                    onClick={closeMenu}
+                    className="block w-full"
+                  >
+                    <Button
+                      text="Explore Events"
+                      width="100%"
+                      height="48px"
+                      radius="999px"
+                      outline
+                      className="w-full"
+                    />
+                  </Link>
+                </motion.div>
+              </motion.div>
+
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.nav>
   );
-}
+};
+
+export default Navbar;
