@@ -5,12 +5,9 @@ import Footer from "./Footer";
 
 export default function Layout() {
   return (
-    <div className="relative min-h-screen bg-[#050216]">
+    <div className="relative min-h-screen bg-navy-900">
       {/* Secure perimeter frame */}
-      <div
-        className="perimeter-frame"
-        aria-hidden="true"
-      />
+      <div className="perimeter-frame" aria-hidden="true" />
 
       <Navbar />
 
@@ -19,7 +16,6 @@ export default function Layout() {
       </main>
 
       <Footer />
-
     </div>
   );
 }

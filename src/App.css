@@ -1,1 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+@theme {
+    /* Colors — REPLACE these hex codes with the real ones from Figma's Fill styles panel */
+    --color-navy-900: #050216;
+    /* placeholder, check Figma */
+    --color-navy-700: #1a1a3a;
+    /* placeholder, check Figma */
+    --color-ink-light: #f5f5ff;
+    /* placeholder, check Figma */
+    --color-mist-200: #b8b8d0;
+    /* placeholder, check Figma */
+    --color-bloom-400: #ff00dd;
+    /* placeholder, check Figma */
+    --color-bloom-500: #d400b8;
+    /* placeholder, check Figma */
+    --color-signal-400: #8900ff;
+    /* placeholder, check Figma */
+    /* Font — REPLACE with the real font name from Figma's Text styles */
+    --font-display: "Manrope", sans-serif;
+    /* Spacing */
+    --spacing-perimeter: 1.5rem;
+    /* guess: standard page-edge padding, verify against Figma */
+    /* Easing — this one I'm fairly confident about, since it's already in your Navbar.tsx code */
+    --ease-precise: cubic-bezier(0.16, 1, 0.3, 1);
+}
