@@ -211,7 +211,6 @@ const Navbar = () => {
         </motion.div>
       </motion.div>
 
-
       {/* =========================
           MOBILE MENU BUTTON
       ========================== */}
@@ -324,17 +323,15 @@ const Navbar = () => {
                   const isActive = location.pathname === link.to;
 
                   return (
-                    <motion.div
-                      key={link.to}
-                      variants={mobileItem}
-                    >
+                    <motion.div key={link.to} variants={mobileItem}>
                       <Link
                         to={link.to}
                         onClick={closeMenu}
-                        className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium transition-colors ${isActive
-                          ? "bg-white/10 text-white"
-                          : "text-white/80 hover:bg-white/10 hover:text-white"
-                          }`}
+                        className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium transition-colors ${
+                          isActive
+                            ? "bg-white/10 text-white"
+                            : "text-white/80 hover:bg-white/10 hover:text-white"
+                        }`}
                       >
                         <span>{link.label}</span>
 
@@ -363,14 +360,8 @@ const Navbar = () => {
 
               {/* Mobile CTAs */}
               {/* Mobile CTAs */}
-              <motion.div
-                variants={mobileItem}
-                className="flex flex-col gap-3"
-              >
-                <motion.div
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                >
+              <motion.div variants={mobileItem} className="flex flex-col gap-3">
+                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
                   <Link
                     to="/create-events"
                     onClick={closeMenu}
@@ -387,10 +378,7 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
 
-                <motion.div
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                >
+                <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
                   <Link
                     to="/events"
                     onClick={closeMenu}
@@ -407,7 +395,6 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               </motion.div>
-
             </motion.div>
           </motion.div>
         )}

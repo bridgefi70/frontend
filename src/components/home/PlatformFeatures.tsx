@@ -22,7 +22,7 @@ const features = [
 
 const PlatformFeatures = () => {
   return (
-    <section className="bg-[#050216] px-6 py-12 sm:px-8 md:px-10 lg:px-16 lg:py-20">
+    <section className="font-display bg-[#050216] px-6 py-12 sm:px-8 md:px-10 lg:px-16 lg:py-20">
       <div className="mx-auto grid max-w-[1200px] items-center gap-10 lg:grid-cols-2 lg:gap-12">
         {/* IMAGE GRID */}
         <div className="grid grid-cols-2 gap-1.5 sm:gap-2">

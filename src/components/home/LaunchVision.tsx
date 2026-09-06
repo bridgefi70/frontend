@@ -23,7 +23,7 @@ const FEATURES = [
 
 const LaunchVision = () => {
   return (
-    <section className="bg-[#050014] px-6 py-20 md:px-12 lg:px-24">
+    <section className="font-display bg-[#050014] px-6 py-20 md:px-12 lg:px-24">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 md:flex-row md:items-start md:justify-between">
         {/* Left side */}
         <div className="w-full md:max-w-[470px]">

@@ -19,7 +19,7 @@ const benefits = [
 
 const WhyThisSystem = () => {
   return (
-    <section className="bg-[#050216] px-6 py-12 sm:px-8 md:px-10 lg:px-16 lg:py-16">
+    <section className="font-display bg-[#050216] px-6 py-12 sm:px-8 md:px-10 lg:px-16 lg:py-16">
       <div className="mx-auto max-w-[1200px]">
         {/* HEADING */}
         <div className="text-center">

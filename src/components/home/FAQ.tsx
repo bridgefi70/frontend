@@ -42,7 +42,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="bg-[#050014] px-6 py-20 md:px-12 lg:px-24">
+    <section className="font-display bg-[#050014] px-6 py-20 md:px-12 lg:px-24">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
           <p className="text-sm font-medium text-[#06B6D4]">

@@ -2,7 +2,7 @@ import Button from "@/components/ui/Button";
 
 const EcosystemCTA = () => {
   return (
-    <section className="bg-[#050014] px-6 py-20 md:px-12 lg:px-24">
+    <section className="font-display bg-[#050014] px-6 py-20 md:px-12 lg:px-24">
       <div className="mx-auto max-w-6xl text-center">
         <p className="text-sm font-medium text-[#06B6D4]">
           ✦ Join the ecosystem
