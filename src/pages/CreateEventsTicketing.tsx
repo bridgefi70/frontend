@@ -11,11 +11,16 @@ const CreateEventsTicketing = () => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
 
+  const [error, setError] = useState("");
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setError("");
+
     if (ticketType === "paid") {
       if (!ticketTier || !price || !quantity) {
+        setError("Please fill in all the details to continue.");
         return;
       }
     }
@@ -41,6 +46,12 @@ const CreateEventsTicketing = () => {
 
   return (
     <main className="min-h-screen bg-[#050014] px-6 py-12 text-white md:px-10 lg:px-16">
+      {error && (
+        <div className="mx-auto mb-5 w-fit bg-[#FFCACA] px-5 py-2 text-xs text-[#FF3B3B]">
+          {error}
+        </div>
+      )}
+
       <div className="mx-auto max-w-[1200px]">
         {/* Progress */}
         <div className="mb-10 grid grid-cols-3 gap-3 md:gap-4">
