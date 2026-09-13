@@ -86,8 +86,27 @@
 // }
 
 import { Link } from "react-router-dom";
-import SocialLinks from "../ui/SocialLinks";
+import SocialLinks from "@/components/ui/SocialLinks";
 import { ArrowUpRight } from "lucide-react";
+
+const SOCIAL_LINKS = [
+  {
+    platform: "Instagram",
+    url: "#",
+  },
+  {
+    platform: "Twitter",
+    url: "#",
+  },
+  {
+    platform: "LinkedIn",
+    url: "#",
+  },
+  {
+    platform: "Facebook",
+    url: "#",
+  },
+];
 
 const FOOTER_LINKS = {
   Platform: [
@@ -119,19 +138,8 @@ const Footer = () => {
               create experiences worth remembering.
             </p>
 
-            <div className="mt-6 flex items-center gap-3">
-              {["Instagram", "Twitter", "LinkedIn", "Facebook"].map(
-                (social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    aria-label={social}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-xs font-medium text-[#858196] transition-colors duration-300 hover:border-[#AE5BFD] hover:text-white"
-                  >
-                    {social[0]}
-                  </a>
-                ),
-              )}
+            <div className="mt-6">
+              <SocialLinks links={SOCIAL_LINKS} className="gap-3" />
             </div>
           </div>
 
