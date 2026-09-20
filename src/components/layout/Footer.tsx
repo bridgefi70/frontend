@@ -87,23 +87,24 @@
 
 import { Link } from "react-router-dom";
 import SocialLinks from "@/components/ui/SocialLinks";
+import type { SocialLink } from "../types/content";
 import { ArrowUpRight } from "lucide-react";
 
-const SOCIAL_LINKS = [
+const SOCIAL_LINKS: SocialLink[] = [
   {
-    platform: "Instagram",
+    platform: "instagram",
     url: "#",
   },
   {
-    platform: "Twitter",
+    platform: "twitter",
     url: "#",
   },
   {
-    platform: "LinkedIn",
+    platform: "linkedin",
     url: "#",
   },
   {
-    platform: "Facebook",
+    platform: "facebook",
     url: "#",
   },
 ];
