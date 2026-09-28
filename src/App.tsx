@@ -15,6 +15,8 @@ import CreateEventsSchedule from "./pages/CreateEventsSchedule";
 import CreateEventsReview from "./pages/CreateEventsReview";
 import EventLaunched from "./pages/EventLaunched";
 import About from "./pages/About";
+import Events from "./pages/Events";
+import EventsDetails from "./pages/EventsDetails";
 
 // import Signin from "./pages/Signin";
 
@@ -27,8 +29,12 @@ const App: React.FC = () => {
           {/* Home */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/events" element={<Events />} />
+
           {/* Events */}
           <Route path="/create-events" element={<CreateEvents />} />
+
+          <Route path="/events/:id" element={<EventsDetails />} />
           {/* Schedule */}
           <Route
             path="/create-events/schedule"
