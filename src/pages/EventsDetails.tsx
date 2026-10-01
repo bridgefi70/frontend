@@ -1,5 +1,15 @@
-import { CalendarDays, Clock3, MapPin, Ticket, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  CalendarDays,
+  Clock3,
+  MapPin,
+  Ticket,
+  Users,
+  Handshake,
+  Rocket,
+  GraduationCap,
+  Coins,
+} from "lucide-react";
 
 const SPEAKERS = [
   {
@@ -21,6 +31,69 @@ const SPEAKERS = [
     name: "Benjamin Amadun",
     role: "AI creator, AI Designer, AI Director",
     image: "/img/speaker4.jpg",
+  },
+];
+
+const PARTICIPANTS = [
+  "/img/i1.png",
+  "/img/i2.png",
+  "/img/i3.png",
+  "/img/i4.png",
+  "/img/i5.png",
+  "/img/i6.png",
+  "/img/i7.png",
+  "/img/i8.jpg",
+  "/img/i9.png",
+  "/img/i10.png",
+  "/img/i1.png",
+  "/img/i2.png",
+  "/img/i3.png",
+  "/img/i4.png",
+  "/img/i5.png",
+  "/img/i6.png",
+  "/img/i7.png",
+  "/img/i8.jpg",
+  "/img/i9.png",
+  "/img/i10.png",
+  "/img/i1.png",
+  "/img/i2.png",
+  "/img/i3.png",
+  "/img/i4.png",
+  "/img/i5.png",
+  "/img/i6.png",
+  "/img/i7.png",
+  "/img/i8.jpg",
+  "/img/i9.png",
+  "/img/i10.png",
+  "/img/i1.png",
+  "/img/i2.png",
+  "/img/i3.png",
+  "/img/i4.png",
+  "/img/i5.png",
+];
+
+const GAINS = [
+  {
+    title: "Access Capital",
+    description: "Meet investors and connect with funding opportunities.",
+    icon: Coins,
+  },
+  {
+    title: "Build Partnership",
+    description: "Connect with builders and businesses to create partnerships.",
+    icon: Handshake,
+  },
+  {
+    title: "Launch Faster",
+    description:
+      "Find the resources and connections needed to accelerate your growth.",
+    icon: Rocket,
+  },
+  {
+    title: "Learn From Experts",
+    description:
+      "Gain practical knowledge directly from experienced Web3 experts.",
+    icon: GraduationCap,
   },
 ];
 
@@ -196,6 +269,149 @@ const EventsDetails = () => {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* REGISTERED PARTICIPANTS */}
+      <section className="px-6 pb-20 lg:px-12 lg:pb-24">
+        <div className="mx-auto max-w-[1100px]">
+          <h2 className="text-3xl font-medium leading-tight sm:text-4xl">
+            Registered Participants
+          </h2>
+
+          {/* Participant collage */}
+          <div className="relative mx-auto mt-1 h-[330px] max-w-[650px] sm:h-[360px]">
+            {PARTICIPANTS.map((image, index) => {
+              const positions = [
+                "left-[6%] top-0",
+                "left-[25%] top-[3%]",
+                "left-[42%] top-0",
+                "left-[58%] top-[3%]",
+                "left-[77%] top-0",
+
+                "left-[14%] top-[18%]",
+                "left-[31%] top-[22%]",
+                "left-[49%] top-[17%]",
+                "left-[67%] top-[22%]",
+                "left-[84%] top-[18%]",
+
+                "left-[5%] top-[36%]",
+                "left-[22%] top-[40%]",
+                "left-[39%] top-[34%]",
+                "left-[57%] top-[40%]",
+                "left-[76%] top-[34%]",
+
+                "left-[12%] top-[53%]",
+                "left-[30%] top-[57%]",
+                "left-[48%] top-[52%]",
+                "left-[67%] top-[57%]",
+                "left-[84%] top-[52%]",
+
+                "left-[4%] top-[70%]",
+                "left-[21%] top-[74%]",
+                "left-[39%] top-[68%]",
+                "left-[57%] top-[75%]",
+                "left-[75%] top-[68%]",
+
+                "left-[15%] top-[87%]",
+                "left-[34%] top-[91%]",
+                "left-[54%] top-[86%]",
+                "left-[76%] top-[91%]",
+              ];
+
+              return (
+                <div
+                  key={`${image}-${index}`}
+                  className={`absolute ${positions[index]} h-11 w-11 overflow-hidden rounded-[8px] sm:h-12 sm:w-12`}
+                >
+                  <img
+                    src={image}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Statistics */}
+          <div className="mx-auto mt-10 grid max-w-[650px] grid-cols-3 text-center">
+            <div>
+              <p className="text-3xl font-medium sm:text-4xl">200</p>
+
+              <p className="mt-1 text-[8px] text-[#858196] sm:text-[9px]">
+                participants registered
+              </p>
+            </div>
+
+            <div>
+              <p className="text-3xl font-medium sm:text-4xl">10</p>
+
+              <p className="mt-1 text-[8px] text-[#858196] sm:text-[9px]">
+                startups hiring
+              </p>
+            </div>
+
+            <div>
+              <p className="text-3xl font-medium sm:text-4xl">5</p>
+
+              <p className="mt-1 text-[8px] text-[#858196] sm:text-[9px]">
+                investors
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT YOU WILL GAIN */}
+      <section className="px-6 pb-20 lg:px-12 lg:pb-24">
+        <div className="mx-auto max-w-[760px]">
+          <h2 className="text-center text-3xl font-medium sm:text-4xl">
+            What You Will Gain
+          </h2>
+
+          <div className="mt-12 grid grid-cols-1 gap-x-16 gap-y-12 sm:grid-cols-2 sm:gap-y-14">
+            {GAINS.map((gain) => {
+              const Icon = gain.icon;
+
+              return (
+                <div
+                  key={gain.title}
+                  className="flex min-h-[75px] items-center justify-between gap-5"
+                >
+                  <div className="max-w-[170px]">
+                    <h3 className="text-[10px] font-medium sm:text-[11px]">
+                      {gain.title}
+                    </h3>
+
+                    <p className="mt-2 text-[8px] leading-[1.6] text-[#858196] sm:text-[9px]">
+                      {gain.description}
+                    </p>
+                  </div>
+
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center text-[#7C3AED] sm:h-16 sm:w-16">
+                    <Icon size={42} strokeWidth={1.4} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="px-6 pb-20 lg:px-12 lg:pb-24">
+        <div className="mx-auto max-w-[700px] text-center">
+          <h2 className="text-2xl font-medium sm:text-3xl">
+            Ready to be impacted
+          </h2>
+
+          <Link
+            to="/events/creativity-powered-by-ai/ticket"
+            className="mx-auto mt-5 flex h-9 w-full max-w-[270px] items-center justify-center rounded-full bg-[#6630C2] text-[9px] font-medium text-white transition-opacity hover:opacity-90"
+          >
+            Get A Ticket
+          </Link>
         </div>
       </section>
     </main>
