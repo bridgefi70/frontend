@@ -139,7 +139,7 @@ const EventsDetails = () => {
               </div>
 
               <Link
-                to="/events/creativity-powered-by-ai/ticket"
+                to="/events/creativity-powered-by-ai/register"
                 className="inline-flex h-10 shrink-0 items-center justify-center rounded-full bg-[#6630C2] px-7 text-[10px] font-medium text-white transition-opacity hover:opacity-90"
               >
                 Get Ticket
